@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+import tkinter as tk
 
 # Canvas Width and Height
 W=600
@@ -8,9 +9,9 @@ H=400
 def paint(e):
 
     # Brush Parameters
-    brush_width = 20
+    brush_width = int(my_slider.get())
     brush_color = "green"
-    brush_type = ROUND
+    brush_type2 =  brush_type.get()
 
     x1 = e.x - 1
     y1 = e.y - 1
@@ -18,7 +19,7 @@ def paint(e):
     x2 = e.x + 1
     y2 = e.y + 1
 
-    my_canvas.create_line(x1, y1, x2, y2, fill=brush_color, smooth=True, width=brush_width, capstyle=brush_type)
+    my_canvas.create_line(x1, y1, x2, y2, fill=brush_color, smooth=True, width=brush_width, capstyle=brush_type2)
 
 def change_brush_size(event):
     """
@@ -57,6 +58,22 @@ my_slider.pack(pady=10, padx=10)
 # Brush slider label
 slider_label = Label(brush_size_frame, text=my_slider.get())
 slider_label.pack(pady=5)
+
+# Brush type frame
+brush_type_frame = LabelFrame(brush_options_frame, text="Brush Type", height=400)
+brush_type_frame.grid(row=0, column=1, padx=100)
+
+brush_type = StringVar()
+brush_type.set("round")
+
+# Create radio buttons for Brush types
+brush_type_radio1 = Radiobutton(brush_type_frame, text="Round", variable=brush_type, value="round")
+brush_type_radio2 = Radiobutton(brush_type_frame, text="Slash", variable=brush_type, value="butt")
+brush_type_radio3 = Radiobutton(brush_type_frame, text="Diamond", variable=brush_type, value="projecting")
+
+brush_type_radio1.pack(anchor = tk.W)
+brush_type_radio2.pack(anchor = tk.W)
+brush_type_radio3.pack(anchor = tk.W)
 
 
 
