@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 
 # Canvas Width and Height
 W=600
@@ -19,6 +20,15 @@ def paint(e):
 
     my_canvas.create_line(x1, y1, x2, y2, fill=brush_color, smooth=True, width=brush_width, capstyle=brush_type)
 
+def change_brush_size(event):
+    """
+    Change the size of the brush with default size of 10
+    :return:
+    """
+
+    slider_label.config(text=int(my_slider.get()))
+
+
 # create window
 root = Tk()
 root.title("My Paint App")
@@ -36,6 +46,17 @@ my_canvas.bind('<B1-Motion>', paint)
 # Create Brush options Frame
 brush_options_frame = Frame(root)
 brush_options_frame.pack(pady=20)
+
+# Adding Brush Size Frame
+brush_size_frame = LabelFrame(brush_options_frame, text="Brush Slider")
+brush_size_frame.grid(row=0 ,column=0, padx=50)
+
+my_slider = ttk.Scale(brush_size_frame, from_=1, to=100, command=change_brush_size, orient=VERTICAL, value=10)
+my_slider.pack(pady=10, padx=10)
+
+# Brush slider label
+slider_label = Label(brush_size_frame, text=my_slider.get())
+slider_label.pack(pady=5)
 
 
 
