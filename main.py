@@ -29,6 +29,12 @@ def change_brush_size(event):
 
     slider_label.config(text=int(my_slider.get()))
 
+def change_brush_color():
+    pass
+
+def change_canvas_color():
+    pass
+
 
 # create window
 root = Tk()
@@ -75,7 +81,17 @@ brush_type_radio1.pack(anchor = tk.W)
 brush_type_radio2.pack(anchor = tk.W)
 brush_type_radio3.pack(anchor = tk.W)
 
+# Change Colors
+change_color_frame= LabelFrame(brush_options_frame, text="Change Color")
+change_color_frame.grid(row=0, column=2)
 
+#change brush color button
+brush_color_button = Button(change_color_frame, text="Brush Color", command=change_brush_color)
+brush_color_button.pack(padx=10, pady=10)
+
+#Change the Canvas backgorund color
+canvas_color_button = Button(change_color_frame, text="Canvas Color", command=change_canvas_color)
+canvas_color_button.pack(padx=10, pady=10)
 
 
 
